@@ -41,7 +41,9 @@ class MenusController extends Controller
     public function show($id)
     {
         $this->checkAuthorization(auth()->user(), ['menus.view']);
-        $model = $this->model->find($id);
+        $model = $this->model
+        ->leftjoin('moduls', 'menus.moduls_code', '=', 'moduls.moduls_code')
+        ->find($id);
         return $model;
     }
 
@@ -110,5 +112,18 @@ class MenusController extends Controller
         ]);
         session()->flash('success', 'Menus has been deleted.');
         return $result;
+    }
+
+    public function combo(Request $request)
+    {
+        $search = !empty($_GET['search']) ? $_GET['search'] : '%';
+
+        $listdata = $this->model
+            ->select('menus_code as id', 'menus_name as text')
+            ->where('menus_name', 'like', '%' . $search . '%')
+            ->where('menus_soft_delete', 0)
+            ->get();
+
+        return response()->json($listdata);
     }
 }

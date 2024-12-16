@@ -108,4 +108,18 @@ class ModulsController extends Controller
         session()->flash('success', 'Admin has been deleted.');
         return $result;
     }
+
+    public function combo(Request $request)
+    {
+        $search = !empty($_GET['search']) ? $_GET['search'] : '%';
+        // return $search;
+
+        $listdata = $this->model
+            ->select('moduls_code as id', 'moduls_name as text')
+            ->where('moduls_name', 'like', '%' . $search . '%')
+            ->where('moduls_soft_delete', 0)
+            ->get();
+
+        return response()->json($listdata);
+    }
 }

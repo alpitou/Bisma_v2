@@ -40,7 +40,9 @@ class SubmenusController extends Controller
     public function show($id)
     {
         $this->checkAuthorization(auth()->user(), ['submenus.view']);
-        $model = $this->model->find($id);
+        $model = $this->model
+        ->leftjoin('menus', 'submenus.menus_code', '=', 'menus.menus_code')
+        ->find($id);
         return $model;
     }
 

@@ -84,7 +84,9 @@ Sub Menu - Admin Panel
                                 <input type="hidden" id="submenus_id">
                                 <div class="fromGroup mb-3">
                                     <label>Menu</Select></label>
-                                    <input class="form-control" type="text" id="menus_code" placeholder="Code Menu" />
+                                    <select class="form-control" id="menus_code" style="width: 100%;">
+                                        <option value="" disabled selected>Pilih Modul</option>
+                                    </select>
                                 </div>
                                 <div class="fromGroup mb-3">
                                     <label>Nama</label>
@@ -119,6 +121,29 @@ Sub Menu - Admin Panel
     </div>
 </div>
 <script>
+
+    $(document).ready(function() {        
+        $('#menus_code').select2({
+            placeholder: "Pilih Modul",
+            allowClear: true,
+            ajax: {
+                url: '/admin/combomenu',
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        search: params.term
+                    };
+                },
+                processResults: function (data) {
+                    return {
+                        results: data
+                    };
+                },
+                cache: true
+            }
+        });
+    });
 
     function reload(){
         // setTimeout(function () {
@@ -183,9 +208,12 @@ Sub Menu - Admin Panel
             success: function (data) {
                 // console.log('hasil => ',data);
                 document.getElementById('submenus_id').value = data.submenus_id; 
-                document.getElementById('menus_code').value = data.menus_code; 
+                // document.getElementById('menus_code').value = data.menus_code; 
                 document.getElementById('submenus_name').value = data.submenus_name; 
                 document.getElementById('submenus_notes').value = data.submenus_notes;
+
+                // khusus select2
+                $('#menus_code').append(new Option(data.menus_name, data.menus_code, true, true)).trigger('change');
             },
             error: function (dataerror) {
                 console.log(dataerror);

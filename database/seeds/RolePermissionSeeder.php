@@ -93,6 +93,96 @@ class RolePermissionSeeder extends Seeder
                     'levels.update',
                 ]
             ],
+            [
+                'group_name' => 'Company',
+                'permissions' => [
+                    'companies.create',
+                    'companies.view',
+                    'companies.edit',
+                    'companies.delete',
+                    'companies.update',
+                ]
+            ],
+            [
+                'group_name' => 'Division',
+                'permissions' => [
+                    'divisions.create',
+                    'divisions.view',
+                    'divisions.edit',
+                    'divisions.delete',
+                    'divisions.update',
+                ]
+            ],
+            [
+                'group_name' => 'Department',
+                'permissions' => [
+                    'department.create',
+                    'department.view',
+                    'department.edit',
+                    'department.delete',
+                    'department.update',
+                ]
+            ],
+            [
+                'group_name' => 'Homebase',
+                'permissions' => [
+                    'homebases.create',
+                    'homebases.view',
+                    'homebases.edit',
+                    'homebases.delete',
+                    'homebases.update',
+                ]
+            ],
+            [
+                'group_name' => 'Shift',
+                'permissions' => [
+                    'shifts.create',
+                    'shifts.view',
+                    'shifts.edit',
+                    'shifts.delete',
+                    'shifts.update',
+                ]
+            ],
+            [
+                'group_name' => 'Master Approval',
+                'permissions' => [
+                    'master_approvals.create',
+                    'master_approvals.view',
+                    'master_approvals.edit',
+                    'master_approvals.delete',
+                    'master_approvals.update',
+                ]
+            ],
+            [
+                'group_name' => 'Province',
+                'permissions' => [
+                    'provinces.create',
+                    'provinces.view',
+                    'provinces.edit',
+                    'provinces.delete',
+                    'provinces.update',
+                ]
+            ],
+            [
+                'group_name' => 'City',
+                'permissions' => [
+                    'cities.create',
+                    'cities.view',
+                    'cities.edit',
+                    'cities.delete',
+                    'cities.update',
+                ]
+            ],
+            [
+                'group_name' => 'District',
+                'permissions' => [
+                    'districts.create',
+                    'districts.view',
+                    'districts.edit',
+                    'districts.delete',
+                    'districts.update',
+                ]
+            ],
         ];
 
         // Do same for the admin guard for tutorial purposes.
